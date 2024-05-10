@@ -12,15 +12,10 @@ st.set_page_config(page_title="Llama3 ChatBot with Search", page_icon="🦜")
 st.title("🦜 Llama3: Chat with Search")
 
 # 获取 API key 和 base URL（优先从 secrets 获取，其次从用户输入）
-openai_api_key = st.sidebar.text_input("API Key", type="password")
+openai_api_key = "sk-tune-PxM5LjDMIkjAfJPmyCBBihHXkKydAN2Yow0"
 openai_api_base = "https://proxy.tune.app/"
 api_model_name = st.sidebar.text_input("模型(可选)", value="rohan/Meta-Llama-3-70B-Instruct")
 
-# 显示信息和链接
-with st.sidebar:
-    st.markdown("[llama3 API Key获取方式](https://nbid.bid/blog)")
-    
-    st.markdown("[Github](https://github.com/saotv/llama3-chatbot)")
 
 # 初始化聊天历史和内存
 msgs = StreamlitChatMessageHistory()
@@ -32,7 +27,7 @@ memory = ConversationBufferMemory(
 )
 
 # 重置聊天历史按钮
-if len(msgs.messages) == 0 or st.sidebar.button("Reset Chat History"):
+if len(msgs.messages) == 0 or st.sidebar.button("重置聊天记录"):
     msgs.clear()
     msgs.add_ai_message("请输入……")
     st.session_state.steps = {}
